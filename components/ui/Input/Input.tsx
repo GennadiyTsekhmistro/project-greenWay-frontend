@@ -1,26 +1,18 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
-import styles from "./Input.module.css";
+import { useEffect, useRef } from 'react';
+import styles from './Input.module.css';
 
-interface InputProps {
-  type?: string;
-  placeholder?: string;
-  value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  disabled?: boolean;
-  autoFocus?: boolean;
-  state?: "default" | "focus" | "error";
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  state?: 'default' | 'focus' | 'error';
 }
 
 export default function Input({
-  type = "text",
-  placeholder,
   value,
-  onChange,
-  disabled = false,
   autoFocus = false,
-  state = "default",
+  state = 'default',
+  className,
+  ...rest
 }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,14 +27,10 @@ export default function Input({
       ref={inputRef}
       className={`${styles.input} ${
         value ? styles.filled : styles.placeholder
-      } ${styles[`${state}Border`]}`}
-      type={type}
-      placeholder={placeholder}
+      } ${styles[`${state}Border`]} ${className ?? ''}`}
       value={value}
-      onChange={onChange}
-      disabled={disabled}
-      readOnly={!onChange}
       autoFocus={autoFocus}
+      {...rest}
     />
   );
 }
