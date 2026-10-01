@@ -1,3 +1,76 @@
-/* Власник: TBD */
 .select {
+  position: relative;
+  width: 560px;
+}
+
+.selectField {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  padding: 8px;
+  width: 560px;
+  height: 43px;
+  background: #ffe5d9;
+  cursor: pointer;
+}
+
+.selectField:focus {
+  border: 1px solid #ffa57a;
+  outline: none;
+}
+
+.placeholderText,
+.filledText,
+.selectItem {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: #4c2613;
+}
+
+.placeholderText {
+  color: #4c4c4c;
+}
+
+.selectList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid #ffa57a;
+  border-radius: 0 0 6px 6px;
+  padding: 12px 8px;
+  width: 560px;
+  background: #ffe5d9;
+}
+
+.selectItem,
+.selectItemActive {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 0;
+  border-radius: 4px;
+  padding: 4px 8px;
+  width: 544px;
+  height: 35px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.selectItemActive {
+  background: #ffa57a;
+}
+
+.selectItem:hover {
+  background: #ffa57a;
+}
+
+.selectField:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

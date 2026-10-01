@@ -1,9 +1,38 @@
-// Власник: TBD (див. docs/FRONTEND_TASKS.md)
-// Textarea зі станами як в Input
-// TODO: верстка за макетом у 3 брейкпоінтах; 'use client' додай, якщо потрібні хуки/події
+"use client";
 
-import css from './Textarea.module.css';
+import styles from "./Textarea.module.css";
 
-export default function Textarea() {
-  return <div className={css.textarea}>Textarea — TODO</div>;
+interface TextareaProps {
+  placeholder?: string;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  disabled?: boolean;
+  state?: "default" | "focus" | "error";
+  errorMessage?: string;
+}
+
+export default function Textarea({
+  placeholder,
+  value,
+  onChange,
+  disabled = false,
+  state = "default",
+  errorMessage,
+}: TextareaProps) {
+  return (
+    <div className={styles.wrapper}>
+      <textarea
+        className={`${styles.textarea} ${styles[`${state}Border`]}`}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+        readOnly={!onChange}
+      />
+
+      {state === "error" && errorMessage && (
+        <div className={styles.errorMessage}>{errorMessage}</div>
+      )}
+    </div>
+  );
 }

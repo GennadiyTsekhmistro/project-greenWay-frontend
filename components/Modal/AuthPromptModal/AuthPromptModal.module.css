@@ -1,0 +1,199 @@
+.modal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 32px;
+
+  border-radius: 24px;
+  padding: 64px 20px;
+
+  width: 334px;
+  height: 438px;
+  max-width: 768px;
+
+  background: #fff2ec;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 16px;
+
+  width: 294px;
+  height: 150px;
+}
+
+.title {
+  width: 294px;
+  height: 62px;
+
+  margin: 0;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #000;
+}
+
+.description {
+  width: 294px;
+  height: 72px;
+
+  margin: 0;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: #000;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 294px;
+  height: 120px;
+}
+
+.loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  padding: 6px 12px;
+
+  width: 294px;
+  height: 48px;
+
+  background: rgba(0, 0, 0, 0.05);
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #4c2613;
+}
+
+.registerButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 8px;
+
+  border: 1px solid #cc6534;
+  border-radius: 6px;
+  padding: 6px 12px;
+
+  width: 294px;
+  height: 48px;
+
+  background: #cc6534;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 64px;
+    width: 704px;
+    height: 348px;
+  }
+
+  .text {
+    width: 576px;
+    height: 140px;
+  }
+
+  .title {
+    width: 576px;
+    height: 76px;
+    font-size: 32px;
+  }
+
+  .description {
+    width: 576px;
+    height: 48px;
+  }
+
+  .buttons {
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    width: 430px;
+    height: 48px;
+  }
+
+  .loginButton {
+    width: 203px;
+  }
+
+  .registerButton {
+    width: 203px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .modal {
+    width: 768px;
+    height: 400px;
+  }
+
+  .text {
+    width: 640px;
+    height: 192px;
+  }
+
+  .title {
+    width: 640px;
+    height: 116px;
+    font-size: 48px;
+  }
+
+  .description {
+    width: 640px;
+    height: 60px;
+    font-size: 20px;
+  }
+
+  .loginButton {
+    font-size: 20px;
+  }
+
+  .registerButton {
+  font-size: 20px;
+}
+}
