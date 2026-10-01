@@ -1,11 +1,63 @@
-// Власник: TBD (див. docs/FRONTEND_TASKS.md)
-// Базова модалка: портал, хрестик, backdrop, Escape, блок скролу
-// TODO: верстка за макетом у 3 брейкпоінтах; 'use client' додай, якщо потрібні хуки/події
+'use client';
 
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import css from './Modal.module.css';
 
-type Props = { children: React.ReactNode; onClose: () => void };
+type Props = {
+  children: React.ReactNode;
+  onClose: () => void;
+};
 
-export default function Modal({ children }: Props) {
-  return <div className={css.modal}>Modal — TODO</div>;
+export default function Modal({ children, onClose }: Props) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
+
+  if (!mounted) {
+    return null;
+  }
+
+  return createPortal(
+    <div
+      className={css.backdrop}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      <div className={css.modal}>
+        <button
+          type="button"
+          className={css.closeButton}
+          onClick={onClose}
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+
+        {children}
+      </div>
+    </div>,
+    document.body,
+  );
 }

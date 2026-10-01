@@ -1,12 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./Select.module.css";
+
+interface SelectOption {
+  value: string;
+  label: string;
+}
 
 interface SelectProps {
   value?: string;
   placeholder?: string;
-  options?: string[];
+  options?: SelectOption[];
   onChange?: (value: string) => void;
   disabled?: boolean;
 }
@@ -14,7 +18,7 @@ interface SelectProps {
 export default function Select({
   value,
   placeholder = "Select one...",
-  options = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"],
+  options = [],
   onChange,
   disabled = false,
 }: SelectProps) {
@@ -26,30 +30,26 @@ export default function Select({
         disabled={disabled}
       >
         <span className={value ? styles.filledText : styles.placeholderText}>
-          {value || placeholder}
+          {options.find((option) => option.value === value)?.label ||
+            placeholder}
         </span>
 
-        <Image
-          src="/icons/Vector.svg"
-          alt=""
-          width={24}
-          height={24}
-        />
+        <span className={styles.chevron}>⌄</span>
       </button>
 
       <div className={styles.selectList}>
         {options.map((option) => (
           <button
             type="button"
-            key={option}
+            key={option.value}
             className={
-              option === value
+              option.value === value
                 ? styles.selectItemActive
                 : styles.selectItem
             }
-            onClick={() => onChange?.(option)}
+            onClick={() => onChange?.(option.value)}
           >
-            {option}
+            {option.label}
           </button>
         ))}
       </div>

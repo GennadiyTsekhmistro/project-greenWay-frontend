@@ -2,32 +2,25 @@
 
 import styles from "./Textarea.module.css";
 
-interface TextareaProps {
-  placeholder?: string;
-  value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  disabled?: boolean;
+interface TextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   state?: "default" | "focus" | "error";
   errorMessage?: string;
 }
 
 export default function Textarea({
-  placeholder,
-  value,
-  onChange,
-  disabled = false,
   state = "default",
   errorMessage,
+  className,
+  ...rest
 }: TextareaProps) {
   return (
     <div className={styles.wrapper}>
       <textarea
-        className={`${styles.textarea} ${styles[`${state}Border`]}`}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-        readOnly={!onChange}
+        className={`${styles.textarea} ${styles[`${state}Border`]} ${
+          className ?? ""
+        }`}
+        {...rest}
       />
 
       {state === "error" && errorMessage && (
