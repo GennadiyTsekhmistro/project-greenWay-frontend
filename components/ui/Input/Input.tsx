@@ -1,9 +1,36 @@
-// Власник: TBD (див. docs/FRONTEND_TASKS.md)
-// Поле вводу зі станами: default / focus / filled / error + текст помилки
-// TODO: верстка за макетом у 3 брейкпоінтах; 'use client' додай, якщо потрібні хуки/події
+'use client';
 
-import css from './Input.module.css';
+import { useEffect, useRef } from 'react';
+import styles from './Input.module.css';
 
-export default function Input() {
-  return <div className={css.input}>Input — TODO</div>;
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  state?: 'default' | 'focus' | 'error';
+}
+
+export default function Input({
+  value,
+  autoFocus = false,
+  state = 'default',
+  className,
+  ...rest
+}: InputProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (autoFocus) {
+      inputRef.current?.focus();
+    }
+  }, [autoFocus]);
+
+  return (
+    <input
+      ref={inputRef}
+      className={`${styles.input} ${
+        value ? styles.filled : styles.placeholder
+      } ${styles[`${state}Border`]} ${className ?? ''}`}
+      value={value}
+      autoFocus={autoFocus}
+      {...rest}
+    />
+  );
 }

@@ -5,7 +5,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 335px);
+  justify-content: center;
   gap: var(--radius-lg);
 }
 
@@ -50,22 +51,28 @@
 
 .updating {
   position: fixed;
-  inset-inline-end: var(--page-padding);
-  inset-block-end: var(--page-padding);
-  padding: var(--page-padding);
-  border-radius: var(--radius-md);
-  background: var(--color-bg-soft);
-  box-shadow: 0 0 var(--radius-md) var(--color-overlay-5);
+  z-index: 9999;
+  top: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 280px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: var(--fs-text-small);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 340px));
   }
 }
 
 @media (min-width: 1440px) {
   .grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 421px));
   }
 }
