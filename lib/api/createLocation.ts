@@ -1,8 +1,11 @@
-// Власник: TBD (див. docs/FRONTEND_TASKS.md)
-// Функція запиту з браузера до нашого Route Handler (див. lib/api/auth.ts як приклад).
-// POST /api/locations, multipart/form-data (image, name, type, region, description) → Location
+import { nextServer } from './client';
+import type { SingleResponse } from '@/types/api';
 import type { Location } from '@/types/location';
 
-export const createLocation = async (_formData: FormData): Promise<Location> => {
-  throw new Error('TODO: createLocation');
+export const createLocation = async (formData: FormData): Promise<Location> => {
+  const { data } = await nextServer.post<SingleResponse<Location>>(
+    '/locations',
+    formData,
+  );
+  return data.data;
 };
